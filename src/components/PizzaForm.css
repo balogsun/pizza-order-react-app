@@ -257,7 +257,7 @@ footer {
 
 /* Marquee Styles */
 .marquee {
-  width: 700px; /* Fixed width for better alignment */
+  width: 350px; /* auto for better alignment */
   overflow: hidden; /* Hide overflow */
   white-space: nowrap; /* Prevent line breaks */
   background-color: #3498db; /* Background color */
@@ -265,7 +265,7 @@ footer {
   padding: 10px 0; /* Padding for the marquee */
   margin: 0 auto; /* Center horizontally */
   margin-bottom: 20px; /* Space below the marquee */
-  border-radius: 12px; /* Rounded edges */
+  border-radius: 22px; /* Rounded edges */
   height: 20px; /* Fixed height */
 }
 
