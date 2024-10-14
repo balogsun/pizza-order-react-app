@@ -47,7 +47,7 @@ const PizzaForm = () => {
     };
 
     try {
-      const response = await fetch('https://kdvlgeydij.execute-api.ca-central-1.amazonaws.com/dev', {
+      const response = await fetch('https://kdvlgeydij.execute-api.ca-central-1.amazonaws.com/dev/order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
