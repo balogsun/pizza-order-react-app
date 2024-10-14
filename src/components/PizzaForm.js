@@ -1,4 +1,3 @@
-// src/components/PizzaForm.js
 import React, { useState } from 'react';
 import './PizzaForm.css';
 
@@ -33,9 +32,39 @@ const PizzaForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+
+    // Convert toppings from object to array of selected toppings
+    const selectedToppings = Object.keys(formData.toppings)
+      .filter((topping) => formData.toppings[topping]);
+
+    const orderData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      toppings: selectedToppings,
+    };
+
+    try {
+      const response = await fetch('https://kdvlgeydij.execute-api.ca-central-1.amazonaws.com/dev', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert(`Order placed successfully! Your order ID: ${data.orderId}`);
+      } else {
+        alert('Error placing order. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error placing order. Please check your internet connection.');
+    }
   };
 
   return (
@@ -44,12 +73,10 @@ const PizzaForm = () => {
         <h2>Your Ultimate Destination for Mouth-Watering Pizzas</h2>
       </header>
       <h2>Let's Get Your Pizza Order Ready</h2>
-	  {/* Marquee section added here */}
       <div className="marquee">
         <span>Welcome to the Pizza Paradise! Order your delicious pizza now! 🙂🍕🍕🍕🍕</span>
       </div>
       <form onSubmit={handleSubmit}>
-        {/* Wrapper div for background image */}
         <div className="input-background">
           <div className="form-group">
             <input
@@ -145,14 +172,12 @@ const PizzaForm = () => {
         </button>
       </form>
 
-      {/* Hide this specific pizza image */}
       <img
-        className="pizza-image" // Ensure this class is added
+        className="pizza-image"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Pizza-3007395.jpg/1280px-Pizza-3007395.jpg"
         alt="Pizza"
       />
 
-      {/* New section for additional images */}
       <div className="image-gallery">
         <h3>Check Out More of Our Delicious Pizzas!</h3>
         <div className="gallery">
@@ -171,5 +196,3 @@ const PizzaForm = () => {
 };
 
 export default PizzaForm;
-
-
