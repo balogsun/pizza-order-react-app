@@ -65,7 +65,7 @@ h3 {
   align-items: center; /* Center the items horizontally */
   width: 90%; /* Full width for better alignment */
   max-width: 600px; /* Max width for larger screens */
-  height: 300px; 
+  height: auto; 
 }
 
 .form-group {
