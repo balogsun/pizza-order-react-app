@@ -85,7 +85,7 @@ h3 {
 
 .form-group input {
   width: 100%; /* Full width for inputs */
-  max-width: 250px; /* Set a maximum width for inputs */
+  max-width: 200px; /* Set a maximum width for inputs */
   padding: 12px 16px;
   border: 2px solid #3498db; /* Make border thicker and colored for visibility */
   border-radius: 8px;
