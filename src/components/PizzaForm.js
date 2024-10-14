@@ -41,45 +41,49 @@ const PizzaForm = () => {
   return (
     <div className="container">
       <header>
-        <h1>Your One Stop Shop for Great Pizzas</h1>
+        <h2>Your Ultimate Destination for Mouth-Watering Pizzas</h2>
       </header>
-      <h2>Kindly Make Your Order by Filling the Details Below</h2>
+      <h2>Let's Get Your Pizza Order Ready</h2>
+	  {/* Marquee section added here */}
+      <div className="marquee">
+        <span>Welcome to the Pizza Paradise! Order your delicious pizza now! 🙂🍕🍕🍕🍕</span>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone No:</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Your Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
+        {/* Wrapper div for background image */}
+        <div className="input-background">
+          <div className="form-group">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Your Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
 
         <h3>Select Pizza Toppings</h3>
@@ -127,23 +131,45 @@ const PizzaForm = () => {
         </div>
 
         <button type="submit" className="button">Submit</button>
-        <button type="reset" className="button reset" onClick={() => setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          toppings: { chicken: false, pepperoni: false, sausage: false, mushrooms: false }
-        })}>Reset</button>
+        <button 
+          type="reset" 
+          className="button reset" 
+          onClick={() => setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            toppings: { chicken: false, pepperoni: false, sausage: false, mushrooms: false }
+          })}
+        >
+          Reset
+        </button>
       </form>
 
+      {/* Hide this specific pizza image */}
       <img
+        className="pizza-image" // Ensure this class is added
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Pizza-3007395.jpg/1280px-Pizza-3007395.jpg"
         alt="Pizza"
       />
+
+      {/* New section for additional images */}
+      <div className="image-gallery">
+        <h3>Check Out More of Our Delicious Pizzas!</h3>
+        <div className="gallery">
+          <img src="https://www.foodandwine.com/thmb/4qg95tjf0mgdHqez5OLLYc0PNT4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Pizza 1" />
+          <img src="https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg" alt="Pizza 2" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/1280px-Pizza_Margherita_stu_spivack.jpg" alt="Pizza 3" />
+        </div>
+      </div>
+
       <footer>
-        <h4>All Rights Reserved</h4>
+        <p>&copy; 2024 Pizza Paradise. All Rights Reserved.</p>
+        <p>Contact: <a href="mailto:seunb@email.com">seunb@email.com</a></p>
       </footer>
     </div>
   );
 };
 
 export default PizzaForm;
+
+

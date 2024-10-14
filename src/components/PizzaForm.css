@@ -1,91 +1,258 @@
 /* src/components/PizzaForm.css */
 body {
-  background-color: #f4f4f9;
-  font-family: Arial, sans-serif;
+  background-color: #f0f8ff; /* Light sky blue */
+  font-family: 'Poppins', sans-serif; /* Modern, clean font */
   margin: 0;
   padding: 0;
   color: #333;
   text-align: center;
+  font-size: 0.95rem; /* General zoom reduction */
 }
+
 header {
-  background-color: #808080;
+  background-color: #3498db; /* Deep blue */
   color: white;
-  padding: 20px;
+  padding: 5px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stylish shadow */
+  border-radius: 20px; /* Curved edges */
+  margin-bottom: 20px;
+  max-width: 95%; /* Reduced width */
+  margin-left: auto;
+  margin-right: auto;
 }
-h1, h2, h3 {
-  margin: 0;
-}
+
 h1 {
-  font-size: 2.5em;
+  font-size: 2.5em; /* Slightly smaller size */
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
 }
-h2 {
-  font-size: 1.5em;
-  margin-top: 0.5em;
-  color: #555;
-}
-h3 {
-  font-size: 1.2em;
-  margin-top: 1em;
-  color: #333;
-}
+
 .container {
   max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 0 auto;
+  padding: 30px;
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
+
+h2 {
+  font-size: 1.6em; /* Adjusted size */
+  margin-bottom: 1em;
+  color: #34495e;
+}
+
+h3 {
+  font-size: 1.4em;
+  margin-top: 1.5em;
+  color: #2980b9;
+}
+
+/* Wrapper for input fields with background image */
+.input-background {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Pizza-3007395.jpg/1280px-Pizza-3007395.jpg');
+  background-size: cover; /* Change to cover to fill the entire background */
+  background-position: center;
+  padding: 20px; /* Padding around the inputs */
+  border-radius: 12px; /* Rounded edges */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  opacity: 0.8; /* Slight transparency for background */
+  margin: 20px auto; /* Center horizontally with auto margins */
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Align items in a column */
+  align-items: center; /* Center the items horizontally */
+  width: 600px; /* Fixed width for better alignment */
+  height: 400px; /* Fixed height to make it square */
+}
+
 .form-group {
-  margin-bottom: 15px;
-  text-align: left;
+  margin-bottom: 20px;
+  text-align: center; /* Centers form elements */
+  position: relative; /* Needed for z-index */
+  width: 80%; /* Set width to control size */
 }
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 800; /* Increased font weight for labels */
+  color: #1F3A7A; /* Deep blue color for labels */
+  font-size: 1.5em; /* Increased font size */
+}
+
 .form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  width: 100%; /* Full width for inputs */
+  max-width: 300px; /* Maximum width for inputs */
+  padding: 12px 16px;
+  border: 2px solid #3498db; /* Make border thicker and colored for visibility */
+  border-radius: 8px;
+  font-size: 1.1em; /* Increase font size for better readability */
+  font-weight: 600; /* Make input text bold */
+  background-color: rgba(255, 255, 255, 0.9); /* Light background for inputs */
+  color: black; /* Set text color to black */
+  transition: all 0.3s ease;
+  z-index: 2; /* Ensures inputs appear above the background */
 }
+
+.form-group input:focus {
+  border-color: #2980b9; /* Blue border on focus */
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+/* Toppings styling */
 .toppings {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
+
 .toppings div {
+  font-size: 1.2em;
   margin: 10px;
-  font-size: 1.1em;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
 }
+
 .button {
-  background-color: #4CAF50;
+  background-color: #2980b9; /* Blue */
   border: none;
   color: white;
-  padding: 15px 25px;
+  padding: 12px 20px;
   text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 10px;
-  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin: 15px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
 }
+
 .button:hover {
-  background-color: #45a049;
+  background-color: #21618c;
+  box-shadow: 0 7px 25px rgba(33, 97, 140, 0.5);
+  transform: translateY(-2px);
 }
+
 .button.reset {
-  background-color: #e7e7e7;
+  background-color: #bdc3c7; /* Light grey */
   color: black;
 }
+
 .button.reset:hover {
-  background-color: #d5d5d5;
+  background-color: #95a5a6;
 }
+
+/* Hide specific image by class or ID, if needed */
+.pizza-image { 
+  display: none; /* Hide the specific pizza image */
+}
+
+/* All other images are displayed */
 img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 20px;
-  border-radius: 8px;
+  display: block; /* Show pizza images */
+  width: 100%; /* Full width */
+  max-width: 400px; /* Optional max width */
+  margin: 20px auto; /* Center the image */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
 }
+
+/* Footer styling */
 footer {
-  margin-top: 20px;
+  margin-top: 30px;
   font-size: 14px;
-  color: #777;
+  color: #7f8c8d;
+}
+
+/* Image gallery styles */
+.image-gallery {
+  text-align: center; /* Center text */
+  margin-top: 30px; /* Add space above the gallery */
+}
+
+.image-gallery h3 {
+  margin-bottom: 20px; /* Space below the title */
+  color: #2980b9; /* Change this to your desired color */
+}
+
+.gallery {
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center the images */
+  flex-wrap: wrap; /* Allow wrapping */
+}
+
+.gallery img {
+  width: 200px; /* Set width for images */
+  height: auto; /* Keep aspect ratio */
+  margin: 10px; /* Space between images */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  transition: transform 0.3s; /* Smooth scaling on hover */
+}
+
+.gallery img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2.2em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  .form-group input {
+    width: 80%; /* Adjusted for smaller screens */
+  }
+
+  .toppings {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%; /* Full width buttons on smaller screens */
+  }
+}
+
+/* Add this to your existing PizzaForm.css */
+
+.marquee {
+  width: 700px; /* Fixed width for better alignment */
+  overflow: hidden; /* Hide overflow */
+  white-space: nowrap; /* Prevent line breaks */
+  background-color: #3498db; /* Background color */
+  color: white; /* Text color */
+  padding: 10px 0; /* Padding for the marquee */
+  margin: 0 auto; /* Center horizontally */
+  margin-bottom: 20px; /* Space below the marquee */
+  border-radius: 12px; /* Rounded edges */
+  height: 20px; /* Fixed height */
+}
+
+.marquee span {
+  display: inline-block; /* Make span inline-block for scrolling effect */
+  animation: scroll 10s linear infinite; /* Animation */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%); /* Start from the right */
+  }
+  100% {
+    transform: translateX(-100%); /* End at the left */
+  }
 }
