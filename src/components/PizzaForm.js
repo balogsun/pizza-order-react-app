@@ -43,7 +43,7 @@ const PizzaForm = () => {
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
-      toppings: selectedToppings,
+      toppings: selectedToppings, // Ensure toppings is sent as an array
     };
 
     try {
@@ -52,14 +52,23 @@ const PizzaForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(orderData),
+        body: JSON.stringify(orderData), // Send order data as JSON
       });
 
       if (response.ok) {
         const data = await response.json();
-        alert(`Order placed successfully! Your order ID: ${data.orderId}`);
+        // Check if the response has a body to parse
+        let body;
+        if (data.body) {
+          body = JSON.parse(data.body); // Parse the body if it exists
+        } else {
+          body = data; // Use the data as it is if no body
+        }
+
+        alert(`Order placed successfully! Your order ID: ${body.orderId}`); // Use the orderId from body
       } else {
-        alert('Error placing order. Please try again.');
+        const errorData = await response.json();
+        alert(`Error placing order: ${errorData.message || 'Please try again.'}`);
       }
     } catch (error) {
       console.error('Error:', error);
