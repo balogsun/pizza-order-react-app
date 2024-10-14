@@ -12,7 +12,7 @@ body {
 header {
   background-color: #3498db; /* Deep blue */
   color: white;
-  padding: 5px;
+  padding: 10px; /* Increased padding for mobile */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stylish shadow */
   border-radius: 20px; /* Curved edges */
   margin-bottom: 20px;
@@ -63,15 +63,16 @@ h3 {
   display: flex; /* Enable flexbox */
   flex-direction: column; /* Align items in a column */
   align-items: center; /* Center the items horizontally */
-  width: 600px; /* Fixed width for better alignment */
-  height: 400px; /* Fixed height to make it square */
+  width: 90%; /* Full width for better alignment */
+  max-width: 600px; /* Max width for larger screens */
+  height: 300px; 
 }
 
 .form-group {
   margin-bottom: 20px;
   text-align: center; /* Centers form elements */
   position: relative; /* Needed for z-index */
-  width: 80%; /* Set width to control size */
+  width: 90%; /* Full width for better alignment */
 }
 
 .form-group label {
@@ -79,16 +80,16 @@ h3 {
   margin-bottom: 8px;
   font-weight: 800; /* Increased font weight for labels */
   color: #1F3A7A; /* Deep blue color for labels */
-  font-size: 1.5em; /* Increased font size */
+  font-size: 1.2em; /* Slightly reduced font size for mobile */
 }
 
 .form-group input {
   width: 100%; /* Full width for inputs */
-  max-width: 300px; /* Maximum width for inputs */
+  max-width: 250px; /* Set a maximum width for inputs */
   padding: 12px 16px;
   border: 2px solid #3498db; /* Make border thicker and colored for visibility */
   border-radius: 8px;
-  font-size: 1.1em; /* Increase font size for better readability */
+  font-size: 1em; /* Slightly reduced font size */
   font-weight: 600; /* Make input text bold */
   background-color: rgba(255, 255, 255, 0.9); /* Light background for inputs */
   color: black; /* Set text color to black */
@@ -104,7 +105,7 @@ h3 {
 /* Toppings styling */
 .toppings {
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Center toppings */
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
@@ -117,6 +118,7 @@ h3 {
   align-items: center;
 }
 
+/* Button styling */
 .button {
   background-color: #2980b9; /* Blue */
   border: none;
@@ -124,10 +126,10 @@ h3 {
   padding: 12px 20px;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1em; /* Reduced font size for mobile */
   font-weight: bold;
   letter-spacing: 0.5px;
-  margin: 15px;
+  margin: 10px; /* Reduced margin for mobile */
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -204,34 +206,55 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-    padding: 20px;
+    padding: 20px; /* Less padding for mobile */
   }
 
   h1 {
-    font-size: 2.2em;
+    font-size: 2em; /* Smaller size for mobile */
   }
 
   h2 {
-    font-size: 1.6em;
+    font-size: 1.4em; /* Smaller size for mobile */
+  }
+
+  h3 {
+    font-size: 1.2em; /* Smaller size for mobile */
+  }
+
+  .input-background {
+    padding: 15px; /* Reduced padding for mobile */
+    height: auto; /* Allow height to adjust */
   }
 
   .form-group input {
-    width: 80%; /* Adjusted for smaller screens */
+    font-size: 0.9em; /* Reduced font size for inputs on mobile */
+    max-width: 300px; /* Set max width for inputs on mobile */
   }
 
   .toppings {
-    flex-direction: column;
+    flex-direction: column; /* Stack toppings vertically on mobile */
+    align-items: center; /* Center toppings */
   }
 
   .button {
-    width: 100%; /* Full width buttons on smaller screens */
+    width: 90%; /* Full width buttons on smaller screens */
+    padding: 12px; /* Less padding for mobile buttons */
+  }
+
+  img {
+    max-width: 90%; /* Limit image width on smaller screens */
+  }
+
+  .gallery img {
+    width: 90%; /* Full width for images in gallery */
+    max-width: 200px; /* Maintain max width for smaller devices */
   }
 }
 
 /* Add this to your existing PizzaForm.css */
-
 .marquee {
-  width: 700px; /* Fixed width for better alignment */
+  width: 90%; /* Adjusted width for responsiveness */
+  max-width: 700px; /* Maximum width for larger screens */
   overflow: hidden; /* Hide overflow */
   white-space: nowrap; /* Prevent line breaks */
   background-color: #3498db; /* Background color */
