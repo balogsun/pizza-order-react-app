@@ -14,6 +14,9 @@ const PizzaForm = () => {
     },
   });
 
+  const [isLoading, setIsLoading] = useState(false); // For loading state
+
+  // Handle input changes (for text fields and checkboxes)
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
@@ -46,32 +49,40 @@ const PizzaForm = () => {
       toppings: selectedToppings, // Ensure toppings is sent as an array
     };
 
+    if (!orderData.name || !orderData.email || !orderData.phone || selectedToppings.length === 0) {
+      alert('Please fill all fields and select at least one topping.');
+      return;
+    }
+
     try {
+      setIsLoading(true); // Set loading state
+
+      // Modify the payload to nest it under the "body" key as a string
+      const payload = {
+        body: JSON.stringify(orderData), // Lambda expects the order data stringified under the "body" key
+      };
+
       const response = await fetch('https://kdvlgeydij.execute-api.ca-central-1.amazonaws.com/dev/pizzaorder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(orderData), // Send order data as JSON
+        body: JSON.stringify(payload), // Send the payload as JSON
       });
-	  
-	  const data = await response.json();
 
+      // Handle the API response
       if (response.ok) {
+        const data = await response.json();
         alert(`Order placed successfully! Your order ID: ${data.orderId}`);
-		// Reset form after successful submission
-		setFormData({
-		  name: '',
-		  email: '',
-		  phone: '',
-		  toppings: { chicken: false, pepperoni: false, sausage: false, mushrooms: false },
-		});
       } else {
-        alert(`Error placing order: ${data.message || 'Please try again.'}`);
+        const errorData = await response.json();
+        alert(`Error placing order: ${errorData.message || 'Please try again.'}`);
       }
     } catch (error) {
       console.error('Error:', error);
       alert('Error placing order. Please check your internet connection.');
+    } finally {
+      setIsLoading(false); // End loading state
     }
   };
 
@@ -164,41 +175,11 @@ const PizzaForm = () => {
             <label htmlFor="mushrooms"> Mushrooms</label>
           </div>
         </div>
-
-        <button type="submit" className="button">Submit</button>
-        <button 
-          type="reset" 
-          className="button reset" 
-          onClick={() => setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            toppings: { chicken: false, pepperoni: false, sausage: false, mushrooms: false }
-          })}
-        >
-          Reset
+        
+        <button type="submit" className="order-button" disabled={isLoading}>
+          {isLoading ? 'Placing Order...' : 'Place Order'}
         </button>
       </form>
-
-      <img
-        className="pizza-image"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Pizza-3007395.jpg/1280px-Pizza-3007395.jpg"
-        alt="Pizza"
-      />
-
-      <div className="image-gallery">
-        <h3>Check Out More of Our Delicious Pizzas!</h3>
-        <div className="gallery">
-          <img src="https://www.foodandwine.com/thmb/4qg95tjf0mgdHqez5OLLYc0PNT4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Pizza 1" />
-          <img src="https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg" alt="Pizza 2" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/1280px-Pizza_Margherita_stu_spivack.jpg" alt="Pizza 3" />
-        </div>
-      </div>
-
-      <footer>
-        <p>&copy; 2024 Pizza Paradise. All Rights Reserved.</p>
-        <p>Contact: <a href="mailto:seunb@email.com">seunb@email.com</a></p>
-      </footer>
     </div>
   );
 };
