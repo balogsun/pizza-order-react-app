@@ -57,9 +57,9 @@ const PizzaForm = () => {
     try {
       setIsLoading(true); // Set loading state
 
-      // Modify the payload to nest it under the "body" key as a string
+      // Create the payload as a string nested under the "body" key
       const payload = {
-        body: JSON.stringify(orderData), // Lambda expects the order data stringified under the "body" key
+        body: JSON.stringify(orderData) // The body should contain a stringified JSON object
       };
 
       const response = await fetch('https://kdvlgeydij.execute-api.ca-central-1.amazonaws.com/dev/pizzaorder', {
