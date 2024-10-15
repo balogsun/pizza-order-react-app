@@ -73,7 +73,16 @@ const PizzaForm = () => {
       // Handle the API response
       if (response.ok) {
         const data = await response.json();
-        alert(`Order placed successfully! Your order ID: ${data.orderId}`);
+
+        // The `body` in the response is a string, so parse it first
+        const parsedBody = JSON.parse(data.body);
+
+        // Check if `orderId` is present and alert accordingly
+        if (parsedBody.orderId) {
+          alert(`Order placed successfully! Your order ID: ${parsedBody.orderId}`);
+        } else {
+          alert('Order placed successfully, but order ID is not available in the response.');
+        }
       } else {
         const errorData = await response.json();
         alert(`Error placing order: ${errorData.message || 'Please try again.'}`);
