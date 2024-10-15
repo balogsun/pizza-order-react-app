@@ -54,21 +54,20 @@ const PizzaForm = () => {
         },
         body: JSON.stringify(orderData), // Send order data as JSON
       });
+	  
+	  const data = await response.json();
 
       if (response.ok) {
-        const data = await response.json();
-        // Check if the response has a body to parse
-        let body;
-        if (data.body) {
-          body = JSON.parse(data.body); // Parse the body if it exists
-        } else {
-          body = data; // Use the data as it is if no body
-        }
-
-        alert(`Order placed successfully! Your order ID: ${body.orderId}`); // Use the orderId from body
+        alert(`Order placed successfully! Your order ID: ${data.orderId}`);
+		// Reset form after successful submission
+		setFormData({
+		  name: '',
+		  email: '',
+		  phone: '',
+		  toppings: { chicken: false, pepperoni: false, sausage: false, mushrooms: false },
+		});
       } else {
-        const errorData = await response.json();
-        alert(`Error placing order: ${errorData.message || 'Please try again.'}`);
+        alert(`Error placing order: ${data.message || 'Please try again.'}`);
       }
     } catch (error) {
       console.error('Error:', error);
