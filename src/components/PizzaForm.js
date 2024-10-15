@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './PizzaForm.css';
 
 const PizzaForm = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: '',
     email: '',
     phone: '',
@@ -12,7 +12,9 @@ const PizzaForm = () => {
       sausage: false,
       mushrooms: false,
     },
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const [isLoading, setIsLoading] = useState(false); // For loading state
 
@@ -33,6 +35,11 @@ const PizzaForm = () => {
         [name]: value,
       });
     }
+  };
+
+  // Reset form
+  const handleReset = () => {
+    setFormData(initialFormData);
   };
 
   const handleSubmit = async (e) => {
@@ -59,7 +66,7 @@ const PizzaForm = () => {
 
       // Create the payload as a string nested under the "body" key
       const payload = {
-        body: JSON.stringify(orderData) // The body should contain a stringified JSON object
+        body: JSON.stringify(orderData), // The body should contain a stringified JSON object
       };
 
       const response = await fetch('https://kdvlgeydij.execute-api.ca-central-1.amazonaws.com/dev/pizzaorder', {
@@ -185,10 +192,30 @@ const PizzaForm = () => {
           </div>
         </div>
         
-        <button type="submit" className="order-button" disabled={isLoading}>
-          {isLoading ? 'Placing Order...' : 'Place Order'}
-        </button>
+        <div className="button-group">
+          <button type="submit" className="order-button" disabled={isLoading}>
+            {isLoading ? 'Placing Order...' : 'Place Order'}
+          </button>
+          <button type="button" className="reset-button" onClick={handleReset} disabled={isLoading}>
+            Reset
+          </button>
+        </div>
       </form>
+
+      {/* New section for additional images */}
+      <div className="image-gallery">
+        <h3>Check Out More of Our Delicious Pizzas!</h3>
+        <div className="gallery">
+          <img src="https://www.foodandwine.com/thmb/4qg95tjf0mgdHqez5OLLYc0PNT4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="Pizza 1" />
+          <img src="https://www.cobsbread.com/wp-content/uploads/2022/09/Pepperoni-pizza-850x630-1-585x400-1.jpg" alt="Pizza 2" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/1280px-Pizza_Margherita_stu_spivack.jpg" alt="Pizza 3" />
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2024 Pizza Paradise. All Rights Reserved.</p>
+        <p>Contact: <a href="mailto:seunb@email.com">seunb@email.com</a></p>
+      </footer>
     </div>
   );
 };
